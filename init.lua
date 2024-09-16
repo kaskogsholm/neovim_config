@@ -195,7 +195,7 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<A-x>', ':q<CR>', { desc = 'Quit buffer using
 vim.keymap.set({ 'n', 'i', 'v' }, '<A-s>', ':update<CR>', { desc = 'save file if it was changed' })
 
 vim.keymap.set({ 'n' }, '<A-\\>', ':vsplit<CR>', { desc = 'Vertical split.' })
-vim.keymap.set({ 'n' }, '<A-->', ':split<CR>', { desc = 'Horizontal split' })
+vim.keymap.set({ 'n' }, '<A-_>', ':split<CR>', { desc = 'Horizontal split' })
 -- [[ basic autocommands ]]
 --  see `:help lua-guide-autocommands`
 
@@ -808,7 +808,7 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<Tab><Tab>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
