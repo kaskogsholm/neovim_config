@@ -1,3 +1,4 @@
+--test
 --[[
 
 =====================================================================
@@ -191,11 +192,11 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<c-h>', '<c-w><c-h>', { desc = 'move focus to the left window' })
 -- vim.keymap.set('n', '<c-l>', '<c-w><c-l>', { desc = 'move focus to the right window' })
 -- vim.keymap.set('n', '<c-j>', '<c-w><c-j>', { desc = 'move focus to the lower window' })
-vim.keymap.set({ 'n', 'i', 'v' }, '<A-x>', ':q<CR>', { desc = 'Quit buffer using alt-x...' })
-vim.keymap.set({ 'n', 'i', 'v' }, '<A-s>', ':update<CR>', { desc = 'save file if it was changed' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<A-x>', '<Cmd>q<CR>', { desc = 'Quit buffer using alt-x...' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<A-s>', '<Cmd>update<CR>', { desc = 'save file if it was changed' })
 
-vim.keymap.set({ 'n' }, '<A-\\>', ':vsplit<CR>', { desc = 'Vertical split.' })
-vim.keymap.set({ 'n' }, '<A-_>', ':split<CR>', { desc = 'Horizontal split' })
+vim.keymap.set({ 'n' }, '<A-\\>', '<Cmd>vsplit<CR>', { desc = 'Vertical split.' })
+vim.keymap.set({ 'n' }, '<A-->', '<Cmd>split<CR>', { desc = 'Horizontal split' })
 -- [[ basic autocommands ]]
 --  see `:help lua-guide-autocommands`
 
@@ -236,6 +237,14 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  {
+    'altermo/ultimate-autopair.nvim',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    branch = 'v0.6', --recommended as each new version will have breaking changes
+    opts = {
+      --Config goes here
+    },
+  },
   {
     'mrjones2014/smart-splits.nvim',
     lazy = false,
@@ -638,7 +647,8 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
+        ruff = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
