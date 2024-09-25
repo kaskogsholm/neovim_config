@@ -100,6 +100,8 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- python paths
+vim.g.python3_host_prog = '/root/.pyenv/versions/3.12.6/envs/neovim3'
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -652,9 +654,20 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        ruff = {},
+        ruff = {
+          -- organize imports disabled, since we are already using `isort` for that
+          -- alternative, this can be enabled to make `organize imports`
+          -- available as code action
+          settings = {
+            organizeImports = false,
+          },
+          -- disable ruff as hover provider to avoid conflicts with pyright
+          -- on_attach = function(client)
+          --   client.server_capabilities.hoverProvider = false
+          -- end,
+        },
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
