@@ -6,7 +6,7 @@ return {
     config = function()
       local opts = {}
       local utils = require 'smart-splits.mux.utils'
-      if utils.are_we_wezterm() and utils.is_WSL() then
+      if utils.are_we_wezterm() and utils.are_we_WSL() then
         opts['wezterm_cli_path'] = 'wezterm.exe'
       end
       require('smart-splits').setup(opts)
